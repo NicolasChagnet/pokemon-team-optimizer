@@ -1,50 +1,8 @@
 import pandas as pd
 import pulp
 import argparse
-
-list_starters_final_stage = [
-    "venusaur",
-    "charizard",
-    "blastoise",
-    "typhlosion",
-    "meganium",
-    "feraligatr",
-    "swampert",
-    "blaziken",
-    "sceptile",
-    "torterra",
-    "infernape",
-    "empoleon",
-    "serperior",
-    "emboar",
-    "samurott",
-    "chesnaught",
-    "delphox",
-    "greninja",
-    "decidueye",
-    "incineroar",
-    "primarina",
-    "rillaboom",
-    "cinderace",
-    "inteleon",
-    "meowscarada",
-    "skeledirge",
-    "quaquaval",
-]
-
-list_pseudo_legendaries = [
-    "dragonite",
-    "tyranitar",
-    "salamence",
-    "metagross",
-    "garchomp",
-    "hydreigon",
-    "goodra",
-    "kommo-o",
-    "dragapult",
-    "hisuian Goodra",
-    "baxcalibur",
-]
+from src.optimizer import optimize_team_weakness_improved
+from src import config
 
 type_columns = [
     "against_bug",
@@ -67,8 +25,6 @@ type_columns = [
     "against_water",
 ]
 
-error_codes = {1: "optimal", 0: "not solved", -1: "unfeasible", -2: "unbounded", -3: "undefined"}
-
 
 def present_solution_weaknesses(team, types):
     """Given a subset of Pokemon, highlights which Pokemon is resistant for each type.
@@ -90,103 +46,31 @@ def present_solution_weaknesses(team, types):
     return team_by_types
 
 
-def optimize_team_weakness_improved(pkms, types, size_team=6, in_team=[]):
-    """Solves the optimization problem associated with an optimal Pokemon team
-
-    Args:
-        pkms (pandas.DataFrame): Dataset containing the Pokemon information.
-        types (list(str)): List of type columns.
-        size_team (int, optional): Size of the team to find. Defaults to 6.
-        in_team (list, optional): List of indexes Pokemon to manually include in the team. Defaults to [].
-
-    Returns:
-        pandas.DataFrame: Subset of the dataset corresponding to the team.
-    """
-    prob = pulp.LpProblem("Pokemon_Team_Optimization", pulp.LpMaximize)
-
-    # Define the boolean variables
-    x = pulp.LpVariable.dicts("x", range(len(pkms)), cat="Binary")
-    y = pulp.LpVariable.dicts("y", (range(len(types)), range(len(pkms))), cat="Binary")
-    z = pulp.LpVariable.dicts("z", (range(len(types)), range(len(pkms))), cat="Binary")
-
-    # Define the base total sum
-    prob += pulp.lpSum(pkmn["base_total"] * x[i] for i, pkmn in pkms.iterrows()), "Maximal base total"
-
-    # Define the size constraint
-    prob += pulp.lpSum(x[i] for i in range(len(pkms))) == size_team, "Team Size"
-
-    # "No more than one start" constraint
-    prob += pulp.lpSum(x[i] * pkmn["starter"] for i, pkmn in pkms.iterrows()) <= 1, "Number starter"
-
-    # If some Pokemons must be in the team
-    # Add a constraint to make sure they are included
-    for idx in in_team:
-        prob += x[idx] == 1
-
-    # Define the weakness sum bound for each type
-    # Based on https://stackoverflow.com/questions/51939363/pulp-milp-constraint-at-least-one-variable-must-be-below-0
-    m = 100
-    for a, type_col in enumerate(types):
-        prob += pulp.lpSum(z[a][i] for i in range(len(pkms))) >= 1  # Overall constraint for each type
-        for i, pkmn in pkms.iterrows():
-            prob += z[a][i] <= x[i], f"Contraint z 1 for {a},{i}"
-            prob += z[a][i] <= y[a][i], f"Contraint z 2 for {a},{i}"
-            prob += z[a][i] >= x[i] + y[a][i] - 1, f"Contraint z 3 for {a},{i}"
-            prob += x[i] * pkmn[type_col] <= 0.5 + m * (1 - y[a][i]), f"Weakness {type_col} for pokemon {i}"
-
-    # Solve the problem
-    out_code = prob.solve(pulp.apis.PULP_CBC_CMD(msg=False))
-
-    if out_code == 1:
-        print("Success!")
-        idxs_sol = [i for i in range(len(pkms)) if pulp.value(x[i]) == 1]
-        pkms_selected = pkms.loc[idxs_sol]
-        return pkms_selected
-    else:
-        print(f"Error: {error_codes[out_code]}.")
-        return None
-
-
 def main(
     gen_cap=None,
     size_team=6,
     include_legendaries=False,
     include_pseudolegendaries=False,
+    fossils="none",
     allow_multiple_starters=False,
     in_team=[],
 ):
     # Load the dataset
-    pkms = pd.read_csv("pokemon.csv")
-    # Drop the Pokemons above the Generation cap and columns we will not use
-    pkms = pkms.drop(
-        [
-            "abilities",
-            "attack",
-            "base_egg_steps",
-            "base_happiness",
-            "capture_rate",
-            "classfication",
-            "defense",
-            "experience_growth",
-            "height_m",
-            "hp",
-            "japanese_name",
-            "percentage_male",
-            "sp_attack",
-            "sp_defense",
-            "speed",
-            "weight_kg",
-        ],
-        axis=1,
-    )
-    pkms["name"] = pkms["name"].str.lower()
-    # Boolean variable to distinguish latest stage starters
-    pkms["starter"] = 0
-    if not allow_multiple_starters:
-        pkms["starter"] = pkms["name"].isin(list_starters_final_stage).astype(int)
+    pkms = pd.read_csv(config.path_latest_file)
+
     # Limit the Pokemons to the generation cap
     if gen_cap is not None:
         pkms = pkms.loc[pkms["generation"] <= gen_cap]
+
+    # Boolean variable to distinguish latest stage starters
+    if allow_multiple_starters:
+        pkms["is_starter"] = 0
+
+    match fossils:
+        case "all":
+            pkms["is_fossil"] = 0
+        case "none":
+            pkms = pkms.loc[pkms["is_fossil"] == 0]
 
     # Remove legendaries
     if not include_legendaries:
@@ -194,7 +78,7 @@ def main(
 
     # Remove pseudo-legendaries
     if not include_pseudolegendaries:
-        pkms = pkms.loc[-pkms["name"].isin(list_pseudo_legendaries)]
+        pkms = pkms.loc[pkms["is_pseudo_legendary"] == 0]
     pkms = pkms.reset_index(drop=True)
     # Look for manual Pokemon to include in the team
 
@@ -226,6 +110,15 @@ parser.add_argument(
     "--allow-starters", help="Allow multiple starters in the team", action="store_true", dest="allow_multiple_starters"
 )
 parser.add_argument(
+    "-f",
+    "--fossils",
+    help="Allow one or multiple fossils",
+    type=str,
+    choices=["all", "one", "none"],
+    dest="fossils",
+    default="none",
+)
+parser.add_argument(
     "--include-pseudo-legendaries",
     help="Allow pseudo-legendaries in the team",
     action="store_true",
@@ -236,10 +129,11 @@ parser.add_argument("-i", "--include", nargs="+", help="Pokemon to include", def
 if __name__ == "__main__":
     args = parser.parse_args()
     main(
-        args.gen_cap,
-        args.size_team,
-        args.include_legendaries,
-        args.include_pseudo_legendaries,
-        args.allow_multiple_starters,
+        gen_cap=args.gen_cap,
+        size_team=args.size_team,
+        include_legendaries=args.include_legendaries,
+        include_pseudolegendaries=args.include_pseudo_legendaries,
+        allow_multiple_starters=args.allow_multiple_starters,
+        fossils=args.fossils,
         in_team=args.in_team,
     )

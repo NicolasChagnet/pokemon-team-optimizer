@@ -9,13 +9,32 @@ The main idea is to express in mathematical terms (see [this notebook](TeamOptim
 3. The base total of the whole team should be maximized.
 4. For each type, there should be at least one Pokemon in the team which resists attacks from that type.
 
-That last constraint is the most complicated to implement and required tuning (once again see [the notebook](TeamOptimization.ipynb) for more details). Some of the constraints can be parameterized such as the size of the team, the presence of multiple starters, the inclusion of (pseudo-)legendaries and finally the explicit inclusion of some Pokemon.
+That last constraint is the most complicated to implement and required tuning (once again see [the notebook](TeamOptimization.ipynb) for more details). Some of the constraints can be parameterized such as the size of the team, the presence of multiple starters, the inclusion of (pseudo-)legendaries, fossils and finally the explicit inclusion of some Pokemon.
 
 ## How to use
 
 You can clone this repository and find the optimized team by using
-```bash
-python3 main.py [-h] [-g GEN_CAP] [--size-team SIZE_TEAM] [--include-legendaries] [--allow-starters] [--include-pseudo-legendaries] [-i IN_TEAM [IN_TEAM ...]]
+```console
+usage: main.py [-h] [-g GEN_CAP] [--size-team SIZE_TEAM] [--include-legendaries] [--allow-starters] [-f {all,one,none}] [--include-pseudo-legendaries]
+               [-i IN_TEAM [IN_TEAM ...]]
+
+Pokemon Team Optimizer.
+
+options:
+  -h, --help            show this help message and exit
+  -g GEN_CAP, --generation-cap GEN_CAP
+                        Generation cap
+  --size-team SIZE_TEAM
+                        Size of the team
+  --include-legendaries
+                        Allow legendaries in the team
+  --allow-starters      Allow multiple starters in the team
+  -f {all,one,none}, --fossils {all,one,none}
+                        Allow one or multiple fossils
+  --include-pseudo-legendaries
+                        Allow pseudo-legendaries in the team
+  -i IN_TEAM [IN_TEAM ...], --include IN_TEAM [IN_TEAM ...]
+                        Pokemon to include
 ```
 
 ## Examples
