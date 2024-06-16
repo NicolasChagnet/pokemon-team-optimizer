@@ -48,10 +48,10 @@ The optimal team is composed of
 name                          
 charizard       fire    flying
 poliwrath      water  fighting
+alakazam     psychic      none
 magneton    electric     steel
 kangaskhan    normal      none
 gyarados       water    flying
-aerodactyl      rock    flying
 
 The optimal resistances are:
 name              min_val    min_pkmn
@@ -69,7 +69,7 @@ against_ground       0.00   charizard
 against_ice          0.50   poliwrath
 against_normal       0.50    magneton
 against_poison       0.00    magneton
-against_psychic      0.50    magneton
+against_psychic      0.50    alakazam
 against_rock         0.50   poliwrath
 against_steel        0.25    magneton
 against_water        0.50   poliwrath
@@ -95,14 +95,14 @@ If you want to complete your current team, you can also just do
 $ python3 main.py -g 2 -i typhlosion xatu
 Success!
 The optimal team is composed of
-              type1   type2
-name                       
-gyarados      water  flying
-aerodactyl     rock  flying
-typhlosion     fire    none
-xatu        psychic  flying
-steelix       steel  ground
-houndoom       dark    fire
+               type1   type2
+name                        
+gyarados       water  flying
+typhlosion      fire    none
+xatu         psychic  flying
+ampharos    electric    none
+steelix        steel  ground
+houndoom        dark    fire
 ```
 
 ## Future directions
