@@ -4,7 +4,7 @@ import pandas as pd
 error_codes = {1: "optimal", 0: "not solved", -1: "unfeasible", -2: "unbounded", -3: "undefined"}
 
 
-def optimize_team_weakness_improved(pkms, types, size_team=6, in_team=[]):
+def optimize_team_weakness_improved(pkms, types, size_team=6, in_team=[], out_team=[]):
     """Solves the optimization problem associated with an optimal Pokemon team
 
     Args:
@@ -12,6 +12,7 @@ def optimize_team_weakness_improved(pkms, types, size_team=6, in_team=[]):
         types (list(str)): List of type columns.
         size_team (int, optional): Size of the team to find. Defaults to 6.
         in_team (list, optional): List of indexes Pokemon to manually include in the team. Defaults to [].
+        out_team (list, optional): List of indexes Pokemon to manually exclude from the team. Defaults to [].
 
     Returns:
         pandas.DataFrame: Subset of the dataset corresponding to the team.
@@ -38,6 +39,11 @@ def optimize_team_weakness_improved(pkms, types, size_team=6, in_team=[]):
     # Add a constraint to make sure they are included
     for idx in in_team:
         prob += x[idx] == 1
+
+    # If some Pokemons must NOT be in the team
+    # Add a constraint to make sure they are excluded
+    for idx in out_team:
+        prob += x[idx] == 0
 
     # Define the weakness sum bound for each type
     # Based on https://stackoverflow.com/questions/51939363/pulp-milp-constraint-at-least-one-variable-must-be-below-0

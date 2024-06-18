@@ -3,7 +3,9 @@ from pathlib import Path
 from pyprojroot.here import here
 
 path_root_folder = here()
-path_latest_file = path_root_folder / "data/pokemon_starter_pl_fossil.csv"
+path_data = path_root_folder / "data"
+path_data_games = path_data / "games"
+path_latest_file = path_data / "pokemon_starter_pl_fossil.csv"
 
 list_starters_final_stage = [
     "venusaur",
@@ -49,6 +51,120 @@ list_pseudo_legendaries = [
     "baxcalibur",
 ]
 
+list_legendaries = [
+    "articuno",
+    "zapdos",
+    "moltres",
+    "mewtwo",
+    "mew",
+    "raikou",
+    "entei",
+    "suicune",
+    "lugia",
+    "ho-oh",
+    "celebi",
+    "regirock",
+    "regice",
+    "registeel",
+    "latias",
+    "latios",
+    "kyogre",
+    "groudon",
+    "rayquaza",
+    "jirachi",
+    "deoxys",
+    "uxie",
+    "mesprit",
+    "azelf",
+    "dialga",
+    "palkia",
+    "heatran",
+    "regigigas",
+    "giratina",
+    "cresselia",
+    "phione",
+    "manaphy",
+    "darkrai",
+    "shaymin",
+    "arceus",
+    "cobalion",
+    "terrakion",
+    "virizion",
+    "tornadus",
+    "thundurus",
+    "reshiram",
+    "zekrom",
+    "landorus",
+    "kyurem",
+    "victini",
+    "keldeo",
+    "meloetta",
+    "genesect",
+    "xerneas",
+    "yveltal",
+    "zygarde",
+    "diancie",
+    "hoopa",
+    "volcanion",
+    "silvally",
+    "tapu koko",
+    "tapu lele",
+    "tapu bulu",
+    "tapu fini",
+    "cosmog",
+    "cosmoem",
+    "solgaleo",
+    "lunala",
+    "necrozma",
+    "magearna",
+    "marshadow",
+    "zeraora",
+    "meltan",
+    "melmetal",
+    "zacian",
+    "zamazenta",
+    "eternatus",
+    "kubfu",
+    "urshifu",
+    "regieleki",
+    "regidrago",
+    "glastrier",
+    "spectrier",
+    "calyrex",
+    "enamorus",
+    "zarude",
+    "wo-chien",
+    "chien-pao",
+    "ting-lu",
+    "chi-yu",
+    "koraidon",
+    "miraidon",
+    "walking wake",
+    "iron leaves",
+    "okidogi",
+    "munkidori",
+    "fezandipiti",
+    "ogerpon",
+    "gouging fire",
+    "raging bolt",
+    "iron boulder",
+    "iron crown",
+    "terapagos",
+    "pecharunt",
+    # Ultra beasts, also counted as legendaries
+    "nihilego",
+    "pheromosa",
+    "buzzwole",
+    "xurkitree",
+    "celesteela",
+    "kartana",
+    "guzzlord",
+    "blacephalon",
+    "stakataka",
+    "poipole",
+    "naganadel",
+]
+
 list_fossils = [
     "kabuto",
     "kabutops",
@@ -72,3 +188,56 @@ list_fossils = [
     "amaura",
     "aurorus",
 ]
+
+list_types = [
+    "normal",
+    "fighting",
+    "flying",
+    "poison",
+    "ground",
+    "rock",
+    "bug",
+    "ghost",
+    "steel",
+    "fire",
+    "water",
+    "grass",
+    "electric",
+    "psychic",
+    "ice",
+    "dragon",
+    "dark",
+    "fairy",
+]
+list_types_columns = [f"against_{typev}" for typev in list_types]
+list_types_columns_gen1 = list(
+    set(list_types_columns) - {"against_dark", "against_steel", "against_fairy", "against_dragon"}
+)
+list_types_columns_prefairy = list(set(list_types_columns) - {"against_fairy"})
+
+
+list_games = {
+    "rby": {"url": "game/red-blue-yellow", "gen": 1},
+    "gsc": {"url": "game/gold-silver-crystal", "gen": 2},
+    "rse": {"url": "game/ruby-sapphire-emerald", "gen": 3},
+    "frlg": {"url": "game/firered-leafgreen", "gen": 3},
+    "dp": {"url": "game/diamond-pearl", "gen": 4},
+    "plat": {"url": "game/platinum", "gen": 4},
+    "hgss": {"url": "game/heartgold-soulsilver", "gen": 4},
+    "bw": {"url": "game/black-white", "gen": 5},
+    "bw2": {"url": "game/black-white-2", "gen": 5},
+    "xy": {"url": "game/x-y", "gen": 6},
+    "oras": {"url": "game/omega-ruby-alpha-sapphire", "gen": 6},
+    "sm": {"url": "game/sun-moon", "gen": 7},
+    "usum": {"url": "game/ultra-sun-ultra-moon", "gen": 7},
+    "swsh": {"url": "game/sword-shield", "gen": 8},
+    "bdsp": {"url": "game/brilliant-diamond-shining-pearl", "gen": 8},
+    "sv": {"url": "game/scarlet-violet", "gen": 9},
+    "nat": {"url": "national", "gen": 9},
+}
+
+cutoffs = [151, 251, 386, 493, 649, 721, 809, 905, 1025]
+
+
+def get_file_loc(gen_id):
+    return path_data_games / f"{gen_id}.csv"

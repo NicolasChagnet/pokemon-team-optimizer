@@ -1,4 +1,4 @@
-against_bug,against_dark,against_dragon,against_electric,against_fairy,against_fight,against_fire,against_flying,against_ghost,against_grass,against_ground,against_ice,against_normal,against_poison,against_psychic,against_rock,against_steel,against_water,base_total,name,pokedex_number,type1,type2,generation,is_legendary,is_starter,is_pseudo_legendary,is_fossil
+against_bug,against_dark,against_dragon,against_electric,against_fairy,against_fighting,against_fire,against_flying,against_ghost,against_grass,against_ground,against_ice,against_normal,against_poison,against_psychic,against_rock,against_steel,against_water,base_total,name,pokedex_number,type1,type2,generation,is_legendary,is_starter,is_pseudo_legendary,is_fossil
 1.0,1.0,1.0,0.5,0.5,0.5,2.0,2.0,1.0,0.25,1.0,2.0,1.0,1.0,2.0,1.0,1.0,0.5,318,bulbasaur,1,grass,poison,1,0,0,0,0
 1.0,1.0,1.0,0.5,0.5,0.5,2.0,2.0,1.0,0.25,1.0,2.0,1.0,1.0,2.0,1.0,1.0,0.5,405,ivysaur,2,grass,poison,1,0,0,0,0
 1.0,1.0,1.0,0.5,0.5,0.5,2.0,2.0,1.0,0.25,1.0,2.0,1.0,1.0,2.0,1.0,1.0,0.5,625,venusaur,3,grass,poison,1,0,1,0,0
