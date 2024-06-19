@@ -1,7 +1,11 @@
 # Pokemon Team Optimizer
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://pokemon-team-optimizer.streamlit.app/)
+
 ## Description
 This project is about finding optimal Pokemon teams using optimization solvers and a [Pokemon dataset](https://www.kaggle.com/datasets/rounakbanik/pokemon) (with data up to Gen VII) available on Kaggle. To further improve this project, datasets for each "version group" pokedex were created (where version group referers to version bundles such as Red-Blue-Yellow, Gold-Silver-Crystal, Ruby-Sapphire-Emerald, FireRed-LeafGreen, etc...).
+
+**DEMO**: View streamlit app.
 
 The main idea is to express in mathematical terms (see [this notebook](TeamOptimization.ipynb) for an explanation of the method) the following constraints for an optimal team:
 1. A team should have 6 Pokemon (flexible).

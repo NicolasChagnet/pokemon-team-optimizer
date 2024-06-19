@@ -3,11 +3,24 @@ import main
 from src import config
 import pandas as pd
 
+from streamlit_extras.badges import badge
+
 data_all = pd.read_csv(config.get_file_loc("nat"))
 all_pkmn_names = data_all["name"]
 
 # Streamlit UI
 st.title("Pokemon Team Optimizer")
+st.sidebar.html(
+    """
+<a href="https://github.com/NicolasChagnet/pokemon-team-optimizer"><img alt="github" src="https://badgen.net/badge/icon/github?icon=github&label=NicolasChagnet">
+<style>
+          a {
+            margin-right: 4px;
+          }
+</style>
+</a>
+"""
+)
 
 st.sidebar.header("Input Parameters")
 legendaries = st.sidebar.toggle("Include legendaries")
