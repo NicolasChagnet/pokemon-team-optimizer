@@ -3,7 +3,6 @@ import main
 from src import config
 import pandas as pd
 
-from streamlit_extras.badges import badge
 
 data_all = pd.read_csv(config.get_file_loc("nat"))
 all_pkmn_names = data_all["name"]
