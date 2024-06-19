@@ -25,7 +25,7 @@ def present_solution_weaknesses(team, types):
     return team_by_types
 
 
-def main(
+def team_optimizer(
     gen_cap=None,
     gens=[],
     version="nat",
@@ -102,6 +102,7 @@ def main(
         if show_resistances:
             print("\nThe optimal resistances are:")
             print(present_solution_weaknesses(team, list_types)[["min_val", "min_pkmn"]])
+    return team
 
 
 parser = argparse.ArgumentParser(description="Pokemon Team Optimizer")
@@ -155,7 +156,7 @@ parser.add_argument(
 
 if __name__ == "__main__":
     args = parser.parse_args()
-    main(
+    team_optimizer(
         gen_cap=args.gen_cap,
         gens=args.gens,
         version=args.version,
