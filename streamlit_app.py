@@ -55,10 +55,10 @@ if st.button("Solve"):
         )
     except ValueError:
         team = None
-    team = team.rename(columns={"name": "Pokemon", "type1": "Type 1", "type2": "Type 2"})
-    resistances = resistances.rename(
-        index={0: "Type"}, columns={"min_val": "Minimal factor", "min_pkmn": "Optimal defender"}
-    )
+        team = team.rename(columns={"name": "Pokemon", "type1": "Type 1", "type2": "Type 2"})
+        resistances = resistances.rename(
+            index={0: "Type"}, columns={"min_val": "Minimal factor", "min_pkmn": "Optimal defender"}
+        )
     st.subheader("Result")
     if team is None:
         st.write("Status: Error!")
