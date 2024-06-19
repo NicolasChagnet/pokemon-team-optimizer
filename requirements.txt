@@ -10,4 +10,3 @@ pyprojroot==0.3.0
 Requests==2.32.3
 seaborn==0.13.2
 streamlit==1.35.0
-streamlit-extras==0.4.3
