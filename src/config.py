@@ -235,6 +235,26 @@ list_games = {
     "sv": {"url": "game/scarlet-violet", "gen": 9},
     "nat": {"url": "national", "gen": 9},
 }
+list_games_names = {
+    "rby": "Red/Blue/Yellow",
+    "gsc": "Gold/Silver/Crystal",
+    "rse": "Ruby/Sapphire/Emerald",
+    "frlg": "Fire Red/Leaf Green",
+    "dp": "Diamond/Pearl",
+    "plat": "Platinum",
+    "hgss": "Heart Gold/Soul Silver",
+    "bw": "Black/White",
+    "bw2": "Black/White 2",
+    "xy": "X/Y",
+    "oras": "Omega Ruby/Alpha Sapphire",
+    "sm": "Sun/Moon",
+    "usum": "Ultra Sun/Ultra Moon",
+    "swsh": "Sword/Shield",
+    "bdsp": "Brilliant Diamond/Shining Pearl",
+    "sv": "Scarlet/Violet",
+    "nat": "National",
+}
+NGENS = 9
 
 cutoffs = [151, 251, 386, 493, 649, 721, 809, 905, 1025]
 

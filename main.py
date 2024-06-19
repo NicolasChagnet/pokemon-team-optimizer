@@ -102,7 +102,7 @@ def team_optimizer(
         if show_resistances:
             print("\nThe optimal resistances are:")
             print(present_solution_weaknesses(team, list_types)[["min_val", "min_pkmn"]])
-    return team
+    return team, present_solution_weaknesses(team, list_types)
 
 
 parser = argparse.ArgumentParser(description="Pokemon Team Optimizer")
