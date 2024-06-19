@@ -40,18 +40,21 @@ out_team = st.sidebar.multiselect("Pokemons to exclude:", all_pkmn_names)
 
 
 if st.button("Solve"):
-    team, resistances = main.team_optimizer(
-        gen_cap=None,
-        gens=gens,
-        version=version,
-        size_team=size_team,
-        fossils=fossils,
-        include_legendaries=legendaries,
-        include_pseudolegendaries=plegendaries,
-        allow_multiple_starters=starters,
-        in_team=in_team,
-        out_team=out_team,
-    )
+    try:
+        team, resistances = main.team_optimizer(
+            gen_cap=None,
+            gens=gens,
+            version=version,
+            size_team=size_team,
+            fossils=fossils,
+            include_legendaries=legendaries,
+            include_pseudolegendaries=plegendaries,
+            allow_multiple_starters=starters,
+            in_team=in_team,
+            out_team=out_team,
+        )
+    except ValueError:
+        team = None
     team = team.rename(columns={"name": "Pokemon", "type1": "Type 1", "type2": "Type 2"})
     resistances = resistances.rename(
         index={0: "Type"}, columns={"min_val": "Minimal factor", "min_pkmn": "Optimal defender"}
