@@ -10,9 +10,15 @@ all_pkmn_names = data_all["name"]
 
 # Streamlit UI
 st.title("Pokemon Team Optimizer")
+st.write(
+    "This is a demo of a linear optimization algorithm to build efficient teams in Pokemon games."
+    " Teams are built under the constraints set in the sidebar in order to maximize the base total"
+    " and such that every type can be resisted by at least one Pokemon in the team."
+)
 st.sidebar.html(
     """
-<a href="https://github.com/NicolasChagnet/pokemon-team-optimizer"><img alt="github" src="https://badgen.net/badge/icon/github?icon=github&label=NicolasChagnet">
+<a href="https://github.com/NicolasChagnet/pokemon-team-optimizer">
+<img alt="github" src="https://badgen.net/badge/icon/github?icon=github&label=NicolasChagnet">
 <style>
           a {
             margin-right: 4px;
