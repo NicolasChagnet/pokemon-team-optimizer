@@ -40,8 +40,8 @@ version = st.sidebar.selectbox(
 )
 size_team = st.sidebar.number_input("Size of the team: ", min_value=1, max_value=len(all_pkmn_names), value=6)
 gens = st.sidebar.multiselect("What generations should be included (empty means all)?", range(1, config.NGENS + 1))
-in_team = st.sidebar.multiselect("Pokemons to include:", all_pkmn_names)
-out_team = st.sidebar.multiselect("Pokemons to exclude:", all_pkmn_names)
+in_team = st.sidebar.multiselect("Pokemon to include:", all_pkmn_names)
+out_team = st.sidebar.multiselect("Pokemon to exclude:", all_pkmn_names)
 
 
 if st.button("Solve"):
