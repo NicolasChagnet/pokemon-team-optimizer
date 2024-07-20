@@ -116,7 +116,7 @@ kingdra       water  dragon
 blissey      normal    none
 ```
 
-Finally, ff you want to complete your current team, you can also just do
+Finally, if you want to complete your current team, you can also just do
 ```console
 $ python3 main.py -v gsc -i typhlosion xatu
 Success!
