@@ -1,5 +1,4 @@
 {"version": 2, "width": 168, "height": 17, "timestamp": 1721480707, "env": {"SHELL": "/usr/bin/zsh", "TERM": "xterm-256color"}}
-[1.059472, "o", "\u001b[1m\u001b[7m%\u001b[27m\u001b[1m\u001b[0m                                                                                                                                                                       \r \r"]
 [1.061137, "o", "\u001b]2;nchagnet@pop-os:~/devs/projects/pokemon-team-optimization\u0007"]
 [1.062036, "o", "\u001b]1;..-optimization\u0007"]
 [1.069967, "o", "\u001b]7;file://pop-os/home/nchagnet/devs/projects/pokemon-team-optimization\u001b\\"]
@@ -50,12 +49,3 @@
 [9.819413, "o", "Success!\r\n"]
 [9.824119, "o", "The optimal team is composed of\r\n"]
 [9.827974, "o", "             type1   type2\r\nname                      \r\ntyphlosion    fire    none\r\nsteelix      steel  ground\r\ngyarados     water  flying\r\narcanine      fire    none\r\nkingdra      water  dragon\r\nsnorlax     normal    none\r\n"]
-[9.962878, "o", "\u001b[1m\u001b[7m%\u001b[27m\u001b[1m\u001b[0m                                                                                                                                                                       \r \r"]
-[9.962972, "o", "\u001b]2;nchagnet@pop-os:~/devs/projects/pokemon-team-optimization\u0007\u001b]1;..-optimization\u0007"]
-[9.965447, "o", "\u001b]7;file://pop-os/home/nchagnet/devs/projects/pokemon-team-optimization\u001b\\"]
-[9.970995, "o", "\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[32m\u001b[1m\u001b[32m➜ \u001b[32m\u001b[1m\u001b[32m\u001b[35m\u001b[1m\u001b[35m\u001b[34m\u001b[1m\u001b[34mpokemon-team-optimization \u001b[36m\u001b[1m\u001b[36m(main) \u001b[33m\u001b[1m\u001b[33m✗ \u001b[39m\u001b[0m\u001b[32m\u001b[1m\u001b[32m\u001b[39m\u001b[0m\u001b[K"]
-[9.975577, "o", "\r\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[32m\u001b[1m\u001b[32m➜ \u001b[32m\u001b[1m\u001b[32m\u001b[35m\u001b[1m\u001b[35m\u001b[34m\u001b[1m\u001b[34mpokemon-team-optimization \u001b[36m\u001b[1m\u001b[36m(main) \u001b[33m\u001b[1m\u001b[33m✗ \u001b[39m\u001b[0m\u001b[32m\u001b[1m\u001b[32m\u001b[39m\u001b[0m\u001b[K"]
-[9.975648, "o", "\u001b[?1h\u001b="]
-[9.976461, "o", "\u001b[?2004h"]
-[9.985805, "o", "\r\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[32m\u001b[1m\u001b[32m➜ \u001b[32m\u001b[1m\u001b[32m\u001b[35m\u001b[1m\u001b[35m\u001b[34m\u001b[1m\u001b[34mpokemon-team-optimization \u001b[36m\u001b[1m\u001b[36m(main) \u001b[33m\u001b[1m\u001b[33m✗ \u001b[39m\u001b[0m\u001b[32m\u001b[1m\u001b[32m\u001b[39m\u001b[0m\u001b[K"]
-[10.750553, "o", "\u001b[?2004l\r\r\n"]
